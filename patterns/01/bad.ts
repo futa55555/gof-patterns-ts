@@ -1,4 +1,4 @@
-type Screen =
+export type Screen =
   | "cart"
   | "address"
   | "shipping"
@@ -11,7 +11,7 @@ type Screen =
 type PaymentMethod = "card" | "bank" | "cod";
 type ShippingMethod = "standard" | "express";
 
-type CheckoutForm = {
+export type CheckoutForm = {
   address: string;
   shippingMethod: ShippingMethod;
   paymentMethod: PaymentMethod;
@@ -59,10 +59,16 @@ export class CheckoutModalController {
     if (this.screen === "submitting") return false;
     if (this.screen === "address" && !this.form.address) return false;
     if (this.screen === "payment") {
-      if (this.form.paymentMethod === "card" && this.form.cardNumber.length < 12) {
+      if (
+        this.form.paymentMethod === "card" &&
+        this.form.cardNumber.length < 12
+      ) {
         return false;
       }
-      if (this.form.paymentMethod === "bank" && this.form.bankAccount.length < 8) {
+      if (
+        this.form.paymentMethod === "bank" &&
+        this.form.bankAccount.length < 8
+      ) {
         return false;
       }
     }
@@ -138,8 +144,12 @@ export class CheckoutModalController {
         this.screen = "success";
       } catch (error) {
         this.retryCount += 1;
-        this.errorMessage = error instanceof Error ? error.message : "注文に失敗しました";
-        this.track("order_failed", { retryCount: this.retryCount, error: this.errorMessage });
+        this.errorMessage =
+          error instanceof Error ? error.message : "注文に失敗しました";
+        this.track("order_failed", {
+          retryCount: this.retryCount,
+          error: this.errorMessage,
+        });
         this.screen = "error";
       }
       return;
@@ -216,7 +226,10 @@ export class CheckoutModalController {
     this.retryCount = 0;
   }
 
-  private track(eventName: string, payload: Record<string, string | number> = {}): void {
+  private track(
+    eventName: string,
+    payload: Record<string, string | number> = {},
+  ): void {
     console.log("[tracking]", eventName, payload);
   }
 
