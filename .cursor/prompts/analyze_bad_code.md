@@ -1,9 +1,25 @@
-Analyze the current TypeScript code.
+# 問題のある悪いコードを生成する
 
-Focus on:
+指定されたデザインパターンに関連する、問題のあるTypeScriptコードを生成してください。
 
-- Why this code will become hard to change
-- What future requirements will break it
-- Hidden coupling and responsibility overload
+## 要件
 
-Do not refactor yet.
+- **フロントエンド開発に密に関連**: UIコンポーネント、状態管理、イベント処理、API通信など
+- **問題が明確**: デザインパターンが解決する問題が体感できる
+- **現実的**: 実務で遭遇しそうなコード
+- **悪いが理解可能**: 悪いコードだが、なぜ悪いかが分かる
+
+## 生成するコードに含めるべき問題
+
+- 変更に弱い構造
+- 責任の過多
+- 密結合
+- 拡張性の欠如
+- テストの困難さ
+- 再利用性の低さ
+
+## 注意事項
+
+- パターン名は明かさない
+- 問題を感じられる程度に悪いコードにする
+- 過度に複雑にしない（学習の焦点がずれないように）
